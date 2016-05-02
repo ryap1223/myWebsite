@@ -1,0 +1,9 @@
+body, 
+textarea,
+input {
+	font: 14px "Segoe UI";
+}
+
+p {
+	margin: 4em;
+}

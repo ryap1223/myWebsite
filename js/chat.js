@@ -1,0 +1,1 @@
+alert("This is the Chat page. It should be working soon.");
