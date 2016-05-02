@@ -2,9 +2,9 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-http.createServer(function (request, response) {
+http.createServer(function (req, res) {
   
-  var filePath = '.' + request.url;
+  var filePath = '.' + req.url;
   if (filePath == './')
     filePath = './index.html';
     
@@ -19,26 +19,29 @@ http.createServer(function (request, response) {
       break;
   }
   
+
   
   fs.exists(filePath, function(exists) {
   
     if (exists) {
-      fs.readFile(filePath, function(error, content) {
-        if (error) {
-          response.writeHead(500);
-          response.end();
+      fs.readFile(filePath, function(err, content) {
+        if (err) {
+          res.writeHead(500);
+          res.end();
         }
         else {
-          response.writeHead(200, { 'Content-Type': contentType });
-          response.end(content, 'utf-8');
+          res.writeHead(200, { 'Content-Type': contentType });
+          res.end(content, 'utf-8');
         }
       });
     }
     else {
-      response.writeHead(404);
-      response.end();
+      res.writeHead(404);
+      res.end();
     }
   });}).listen(8000);
+
+
 
 
 //  To-do: set specific URLs on specific pages/links
